@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClientRescue — Awkward Client Message &amp; Invoice Follow-Up Generator</title>
+<meta name="description" content="Free, private generator for the messages freelancers dread: late delivery, unpaid invoice, scope creep, free revision requests, rescheduling. 30 copy-paste templates in English and Korean. No sign-up, nothing uploaded.">
+<meta name="theme-color" content="#f7f5f1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ClientRescue — say the awkward thing without losing the client">
+<meta property="og:description" content="30 copy-paste scripts for missed deadlines, unpaid invoices, scope creep and rescheduling. Free, offline, English + Korean.">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="./" aria-label="ClientRescue home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" role="presentation">
+          <rect x="1" y="1" width="30" height="30" rx="9" fill="#14171c"/>
+          <path d="M9 21.5c1.6 1.9 3.7 2.9 6.3 2.9 2.1 0 3.7-.7 4.9-1.9l-1.9-2.1c-.8.8-1.8 1.2-3 1.2-1.1 0-2-.4-2.7-1.1-.7-.7-1.1-1.7-1.1-2.9s.4-2.2 1.1-2.9c.7-.7 1.6-1.1 2.7-1.1 1.2 0 2.2.4 3 1.2l1.9-2.1c-1.2-1.2-2.8-1.9-4.9-1.9-2.6 0-4.7 1-6.3 2.9" fill="none" stroke="#f6b26b" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">ClientRescue</span>
+    </a>
+    <div class="top-right">
+      <span class="badge" data-i18n="brandTag">Free · no sign-up · runs offline</span>
+      <div class="lang" role="group" aria-label="Language / 언어">
+        <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="ko" aria-pressed="false">한국어</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-i18n="heroTitle">Say the awkward thing without losing the client.</h1>
+      <p class="hero-sub" data-i18n="heroSub">Pick the mess, pick the tone, copy a message a real person would send.</p>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+
+    <!-- ------------------------------------------------ controls ---------- -->
+    <section class="panel controls" aria-label="Message settings">
+
+      <div class="step">
+        <span class="step-num">1</span>
+        <span data-i18n="step1">Pick the mess</span>
+      </div>
+      <div class="scenarios" id="scenarios"></div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <span data-i18n="step2">Pick the tone</span>
+      </div>
+      <div class="tones" id="tones"></div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <span data-i18n="step3">Add details</span>
+        <span class="step-opt" data-i18n="step3opt">optional</span>
+      </div>
+      <div class="fields" id="fields"></div>
+
+      <div class="row row-gap">
+        <button type="button" class="btn ghost" id="example" data-i18n="loadExample">Load example</button>
+        <button type="button" class="btn ghost quiet" id="clear" data-i18n="clear">Clear</button>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------ preview ----------- -->
+    <section class="panel preview" aria-live="polite">
+      <div class="prev-head">
+        <span class="prev-title" data-i18n="yourMessage">Your message</span>
+        <span class="stats" id="stats"></span>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <span class="block-label" data-i18n="subjectLabel">Subject</span>
+          <button type="button" class="btn mini" id="copy-subject" data-i18n="copySubject">Copy subject</button>
+        </div>
+        <p class="out-subject" id="subject">—</p>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <span class="block-label" data-i18n="bodyLabel">Message</span>
+        </div>
+        <pre class="out-body" id="body">—</pre>
+      </div>
+
+      <div class="row row-gap">
+        <button type="button" class="btn primary" id="copy-body" data-i18n="copyBody">Copy message</button>
+        <a class="btn ghost" id="mailto" href="mailto:" data-i18n="openMail">Open in email</a>
+      </div>
+
+      <div class="never">
+        <span class="never-label" data-i18n="never">Never say this</span>
+        <span class="never-text" id="avoid"></span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ---------------------------------------------------- CTA ------------ -->
+  <section class="wrap">
+    <div class="cta" id="gumroad-playbook">
+      <div class="cta-copy">
+        <span class="cta-kicker" data-i18n="ctaKicker">The full playbook</span>
+        <h2 data-i18n="ctaTitle">30 copy-paste scripts, the follow-up cadence, and a one-page emergency sheet.</h2>
+        <p data-i18n="ctaText">This free tool covers five situations. The playbook covers all thirty.</p>
+      </div>
+      <div class="cta-action">
+        <a class="btn cta-btn" href="#gumroad-playbook" data-i18n="ctaButton">Get the playbook</a>
+        <!-- SWAP THIS: replace href above with your live Gumroad product URL -->
+        <span class="cta-note" data-i18n="ctaNote">$0+ on Gumroad · PDF · instant download</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap foot">
+    <p data-i18n="footerLeft">No accounts, no cookies, no analytics.</p>
+    <p class="foot-dim" data-i18n="footerRight">Built by one person with AI help.</p>
+  </footer>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
