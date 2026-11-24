@@ -54,19 +54,17 @@ Opening `site/index.html` directly with a `file://` URL also works.
 If you name the repo `<username>.github.io` instead, the site lands at
 `https://<username>.github.io/` with no subfolder.
 
-## Replace the Gumroad link before publishing
+## The Gumroad link
 
-The bottom CTA card in `index.html` currently points at the anchor
-`#gumroad-playbook`, which does nothing but scroll. Replace it once the product
-is live:
+The bottom CTA card in `index.html` points at the live product page:
 
 ```html
 <!-- index.html, the CTA card -->
-<a class="btn cta-btn" href="https://YOURNAME.gumroad.com/l/awkward-client-rescue" ...>
+<a class="btn cta-btn" href="https://fatheroar.gumroad.com/l/awkward-client-rescue" target="_blank" rel="noopener" ...>
 ```
 
-Search for `SWAP THIS` in `index.html` — there is exactly one place to change.
-Nothing else in the site links out.
+That is the only outbound link on the page; change the `href` if the product
+moves. The `id="gumroad-playbook"` on the card is just an in-page anchor.
 
 ## Editing the copy
 
@@ -82,11 +80,18 @@ Nothing else in the site links out.
 
 ## Tests
 
+This repository holds only the published site, so the test scripts are not part
+of it. They live in the development package next to this folder and are run from
+there:
+
 ```bash
 node tests/verify.js            # 542 assertions over all 30 templates
 python3 tests/run_verify.py     # same file, executed with an embedded JS engine
 LD_LIBRARY_PATH=… python3 tests/site_check.py   # headless-browser UI check
 ```
+
+Nothing here needs them to run: `app.js` is standalone and the site works from a
+plain static server.
 
 `verify.js` runs the real `app.js` over every scenario × tone × language with
 full input, empty input, one-field-at-a-time input and hostile input, and fails
